@@ -50,6 +50,5 @@ namespace AlquileresMVC.Controllers
 
             return View(alquiler);
         }
-
     }
 }
