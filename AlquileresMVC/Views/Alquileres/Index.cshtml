@@ -5,11 +5,14 @@
     <h1 class="page-header text-center">Listado de Alquileres <i class="fas fa-comment-dollar text-primary"></i> </h1>
 
     <div class="breadcrumb">
-        <a onclick="showModal('@Url.Action("AddOrEdit","Alquileres",null,Context.Request.Scheme)', 'Nuevo Alquiler')" class="btn btn-primary text-white">Agregar nuevo</a>        
+        <a onclick="showModal('@Url.Action("AddOrEdit","Alquileres",new { Id = 0 },Context.Request.Scheme)', 'Nuevo Alquiler')" class="btn btn-primary text-white">Agregar nuevo</a>
     </div>
 
     <div id="view-all">
         @await Html.PartialAsync("_ViewAll", Model)
     </div>
 
+    @section Scripts{
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
 </div>

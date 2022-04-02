@@ -34,7 +34,7 @@ namespace AlquileresMVC.Models
         public string Descripcion { get; set; }
 
         [Required(ErrorMessage = "El número de días es obligatorio")]
-        [Range(1,9999)]
+        [Range(1,9999,ErrorMessage = "Ingrese un número válido")]
         public int Dias { get; set; }
 
         [Column(TypeName = "varchar(250)")]

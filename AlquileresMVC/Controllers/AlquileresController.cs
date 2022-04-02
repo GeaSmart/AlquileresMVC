@@ -71,7 +71,8 @@ namespace AlquileresMVC.Controllers
                 }
                 return Json(new { isValid = true, html = RenderRazor.RenderRazorViewToString(this, "_ViewAll", context.Alquileres.ToList()) });
             }
-            return Json(new { isValid = true, html = RenderRazor.RenderRazorViewToString(this, "AddOrEdit", alquiler) });
+            return Json(new { isValid = false, html = RenderRazor.RenderRazorViewToString(this, "AddOrEdit", alquiler) });
+            //return Json(new { isValid = true, html = RenderRazor.RenderRazorViewToString(this, "_ViewAll", context.Alquileres.ToList()) });
         }
     }
 }
