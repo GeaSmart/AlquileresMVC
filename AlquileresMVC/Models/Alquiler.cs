@@ -13,12 +13,14 @@ namespace AlquileresMVC.Models
         public int Id { get; set; }
 
         [Column(TypeName = "datetime")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Fecha de inicio")]
         [Required(ErrorMessage = "Ingrese la fecha de inicio")]
         public DateTime FechaInicio { get; set; }
 
         [Column(TypeName = "datetime")]
-        [Display(Name = "Fecha de inicio")]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Fecha de finalización")]
         [Required(ErrorMessage = "Ingrese la fecha de fin")]
         public DateTime FechaFin { get; set; }
 

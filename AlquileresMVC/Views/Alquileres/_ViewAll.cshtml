@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Alquiler>
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(x => x.Descripcion)</th>
@@ -15,11 +15,20 @@
         {
             <tr>
                 <td>@item.Descripcion</td>
-                <td>@item.FechaInicio</td>
-                <td>@item.FechaFin</td>
+                <td>@item.FechaInicio.ToShortDateString()</td>
+                <td>@item.FechaFin.ToShortDateString()</td>
                 <td>@item.Dias</td>
                 <td>@item.Monto</td>
-                <td>xxx</td>
+                <td>
+                    <div class="container text-center">
+                        <div class="row">
+                            <a onclick="showModal('@Url.Action("AddOrEdit","Alquileres",new { Id = item.Id }, Context.Request.Scheme)', 'Editar transacción')" class="btn btn-primary text-white mr-1"><i class="fas fa-pencil-alt"></i> Editar</a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)">
+                                <button type="submit" name="name" class="btn btn-danger"><i class="fas fa-trash"></i> Borrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </td>
             </tr>
         }
     </tbody>

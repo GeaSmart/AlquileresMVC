@@ -29,7 +29,7 @@ namespace AlquileresMVC.Controllers
         public async Task<ActionResult> AddOrEdit(int id = 0)
         {
             if (id == 0)
-                return View(new Alquiler());
+                return View(new Alquiler() { FechaInicio = DateTime.Now, FechaFin = DateTime.Now });
 
             var alquiler = await context.Alquileres.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (alquiler == null)
@@ -73,6 +73,18 @@ namespace AlquileresMVC.Controllers
             }
             return Json(new { isValid = false, html = RenderRazor.RenderRazorViewToString(this, "AddOrEdit", alquiler) });
             //return Json(new { isValid = true, html = RenderRazor.RenderRazorViewToString(this, "_ViewAll", context.Alquileres.ToList()) });
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var alquiler = await context.Alquileres.FirstOrDefaultAsync(x => x.Id == id);
+            if (alquiler == null)
+                return NotFound();
+
+            context.Alquileres.Remove(alquiler);
+            await context.SaveChangesAsync();            
+            return Json(new { html = RenderRazor.RenderRazorViewToString(this, "_ViewAll", context.Alquileres.ToList()) });
         }
     }
 }
