@@ -1,4 +1,5 @@
-﻿using AlquileresMVC.Models;
+﻿using AlquileresMVC.Helpers;
+using AlquileresMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -49,6 +50,28 @@ namespace AlquileresMVC.Controllers
                 return NotFound();
 
             return View(alquiler);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddOrEdit(int id, [FromForm] Alquiler alquiler)
+        {
+            if (ModelState.IsValid)
+            {
+                //insert
+                if (id == 0)
+                {                    
+                    context.Alquileres.Add(alquiler);
+                    await context.SaveChangesAsync();
+                }
+                //update
+                else
+                {
+                    context.Alquileres.Update(alquiler);
+                    await context.SaveChangesAsync();
+                }
+                return Json(new { isValid = true, html = RenderRazor.RenderRazorViewToString(this, "_ViewAll", context.Alquileres.ToList()) });
+            }
+            return Json(new { isValid = true, html = RenderRazor.RenderRazorViewToString(this, "AddOrEdit", alquiler) });
         }
     }
 }

@@ -1,8 +1,12 @@
 ﻿@model Alquiler
 
+@{
+    Layout = null;
+}
+
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="AddOrEdit" asp-route-id="@Model.Id" onsubmit="return xxx">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this)" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <input type="hidden" asp-for="Id" />
@@ -66,7 +70,7 @@
                     <input type="submit" value="Enviar" class="btn btn-primary btn-block" />
                 </div>
             </div>
-            
-        </form>    
+
+        </form>
     </div>
 </div>

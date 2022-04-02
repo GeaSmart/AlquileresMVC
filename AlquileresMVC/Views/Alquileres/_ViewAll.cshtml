@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Alquiler>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.Descripcion)</th>
+            <th>@Html.DisplayNameFor(x => x.FechaInicio)</th>
+            <th>@Html.DisplayNameFor(x => x.FechaFin)</th>
+            <th>@Html.DisplayNameFor(x => x.Dias)</th>
+            <th>@Html.DisplayNameFor(x => x.Monto)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>@item.Descripcion</td>
+                <td>@item.FechaInicio</td>
+                <td>@item.FechaFin</td>
+                <td>@item.Dias</td>
+                <td>@item.Monto</td>
+                <td>xxx</td>
+            </tr>
+        }
+    </tbody>
+</table>
