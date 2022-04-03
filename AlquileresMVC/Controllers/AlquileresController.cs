@@ -25,6 +25,7 @@ namespace AlquileresMVC.Controllers
             return View(alquileres);
         }
 
+        [NoDirectAccess]
         [HttpGet]
         public async Task<ActionResult> AddOrEdit(int id = 0)
         {
