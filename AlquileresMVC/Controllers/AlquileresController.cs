@@ -38,20 +38,6 @@ namespace AlquileresMVC.Controllers
             return View(alquiler);            
         }
 
-        [HttpGet]
-        public async Task<ActionResult> ConfirmDelete(int? id)
-        {
-            if (id == null)
-                return NotFound();
-
-            var alquiler = await context.Alquileres.FirstOrDefaultAsync(x => x.Id == id);
-
-            if (alquiler == null)
-                return NotFound();
-
-            return View(alquiler);
-        }
-
         [HttpPost]
         public async Task<ActionResult> AddOrEdit(int id, [FromForm] Alquiler alquiler)
         {
@@ -71,8 +57,7 @@ namespace AlquileresMVC.Controllers
                 }
                 return Json(new { isValid = true, html = RenderRazor.RenderRazorViewToString(this, "_ViewAll", context.Alquileres.ToList()) });
             }
-            return Json(new { isValid = false, html = RenderRazor.RenderRazorViewToString(this, "AddOrEdit", alquiler) });
-            //return Json(new { isValid = true, html = RenderRazor.RenderRazorViewToString(this, "_ViewAll", context.Alquileres.ToList()) });
+            return Json(new { isValid = false, html = RenderRazor.RenderRazorViewToString(this, "AddOrEdit", alquiler) });            
         }
 
         [HttpDelete]
